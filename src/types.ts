@@ -1,4 +1,5 @@
 // types.ts
+import { StructuredTextDocument } from 'react-datocms';
 
 export interface ProfileBanner {
   backgroundImage: { url: string };
@@ -59,3 +60,19 @@ export interface Skill {
   description: string;
   icon: string;
 }
+
+
+
+export interface Recommendation {
+  recommenderName: string;
+  recommenderProfessionalTitle: string;
+  dateOfRecommendation: string;
+  content: {
+    value: StructuredTextDocument;
+  };
+  recommenderPicture: {
+    url: string;
+  };
+}
+
+
