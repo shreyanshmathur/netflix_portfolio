@@ -8,6 +8,7 @@ export interface ProfileBanner {
   };
   linkedinLink: string;
   profileSummary: string;
+  clickHelper?: { url?: string };
 }
 
 export interface WorkPermit {

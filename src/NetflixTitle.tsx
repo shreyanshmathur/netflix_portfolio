@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logoImage from "../src/images/logo-2.png"; // Update with the path to your logo
 import "./NetflixTitle.css";
-import clickHelperImage from "./images/click-helper.jpg"; // Add your image path
 import netflixSound from "./netflix-sound.mp3";
+import { getProfileBanner } from "./queries/getProfileBanner";
+import { ProfileBanner as ProfileBannerType } from './types';
 
 const NetflixTitle = () => {
   const [isClicked, setIsClicked] = useState(false);
+  const [bannerData, setBannerData] = useState<ProfileBannerType | null>(null);
   const navigate = useNavigate();
 
   const handlePlaySound = () => {
@@ -24,6 +26,14 @@ const NetflixTitle = () => {
     }
   }, [isClicked, navigate]);
 
+    useEffect(() => {
+      async function fetchData() {
+        const data = await getProfileBanner();
+        setBannerData(data);
+      }
+      fetchData();
+    }, []);
+
   return (
     <div className="netflix-container" onClick={handlePlaySound}>
       <img 
@@ -34,7 +44,7 @@ const NetflixTitle = () => {
 
       {!isClicked && (
         <img
-          src={clickHelperImage}
+          src={bannerData?.clickHelper?.url}
           alt="Click Helper"
           className="click-helper"
         />
