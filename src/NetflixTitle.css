@@ -36,3 +36,32 @@
     opacity: 0;
   }
 }
+
+
+.click-helper {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  animation: float-up 1s ease-out forwards;
+  z-index: 5;
+} 
+
+@keyframes float-up {
+  to {
+    bottom: 50px;
+  }
+}
+
+
+.fade-away {
+  animation: fade-down 0.5s forwards;
+}
+
+@keyframes fade-down {
+  to {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
