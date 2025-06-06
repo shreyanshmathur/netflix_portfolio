@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './Projects.css';
-import { FaReact, FaNodeJs, FaAws, FaDatabase, FaDocker, FaAngular, FaGithub, FaGitlab, FaGoogle, FaJava, FaJenkins, FaMicrosoft, FaPython, FaVuejs } from 'react-icons/fa';
-import { SiRubyonrails, SiPostgresql, SiMongodb, SiMaterialdesign, SiHtml5, SiCss3, SiJquery, SiAwsamplify, SiFirebase, SiTerraform, SiArgo } from 'react-icons/si';
-import { Project } from '../types';
-import { getProjects } from '../queries/getProjects';
+import { FaAngular, FaAws, FaDatabase, FaDocker, FaGithub, FaGitlab, FaGoogle, FaJava, FaJenkins, FaMicrosoft, FaNodeJs, FaPython, FaReact, FaVuejs } from 'react-icons/fa';
 import { GrDeploy, GrKubernetes } from "react-icons/gr";
+import { SiArgo, SiAwsamplify, SiCss3, SiFirebase, SiHtml5, SiJquery, SiMaterialdesign, SiMongodb, SiPostgresql, SiRubyonrails, SiTerraform } from 'react-icons/si';
+import Card from '../components/Card';
+import '../components/Card.css';
+import CardGrid from '../components/CardGrid';
+import { getProjects } from '../queries/getProjects';
+import { Project } from '../types';
+import './Projects.css';
 
 const techIcons: { [key: string]: JSX.Element } = {
   "ReactJS": <FaReact />,
@@ -76,28 +79,25 @@ const Projects: React.FC = () => {
 
   return (
     <div className="projects-container">
-      <div className="projects-grid">
+      <CardGrid>
         {projects.map((project, index) => (
-          <div
+          <Card
             key={index}
-            className="project-card"
-            style={{ '--delay': `${index * 0.1}s` } as React.CSSProperties}
+            image={project.image.url}
+            title={project.title}
+            description={project.description}
+            style={{ ['--delay' as any]: `${index * 0.1}s` }}
           >
-            <img src={project.image.url} alt={project.title} className="project-image" />
-            <div className="project-details">
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="tech-used">
-                {project.techUsed.split(', ').map((tech, i) => (
-                  <span key={i} className="tech-badge">
-                    {techIcons[tech] || "🔧"} {tech}
-                  </span>
-                ))}
-              </div>
+            <div className="tech-used">
+              {project.techUsed.split(', ').map((tech, i) => (
+                <span key={i} className="tech-badge">
+                  {techIcons[tech] || "🔧"} {tech}
+                </span>
+              ))}
             </div>
-          </div>
+          </Card>
         ))}
-      </div>
+      </CardGrid>
     </div>
   );
 };
