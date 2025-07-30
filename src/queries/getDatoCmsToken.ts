@@ -8,6 +8,7 @@ export const getDatoCmsToken = (): string => {
     case 'sumanthsamala.com':
     case 'ror.localhost':
     case 'localhost':
+    case 'zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--3000--96435430.local-credentialless.webcontainer-api.io':
       return process.env.REACT_APP_DATOCMS_ROR_TOKEN ?? '';
 
     case 'java.sumanthsamala.com':
