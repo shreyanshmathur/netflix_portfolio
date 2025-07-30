@@ -19,7 +19,20 @@ const GET_PROFILE_BANNER = `
 `;
 
 export async function getProfileBanner(): Promise<ProfileBanner> {
-  const data = await datoCMSClient.request<{ profilebanner: ProfileBanner }>(GET_PROFILE_BANNER);
-  console.log("🚀 ~ getProfileBanner ~ data:", data)
-  return data.profilebanner;
+  // Mock data for Shreyansh Mathur based on the PDF
+  const mockData = {
+    profilebanner: {
+      backgroundImage: {
+        url: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg"
+      },
+      headline: "Strategic Business Analyst & Consultant",
+      resumeLink: {
+        url: "#"
+      },
+      linkedinLink: "https://linkedin.com/in/shreyansh-mathur",
+      profileSummary: "Experienced business analyst with a strong background in financial modeling, strategic planning, and process optimization. Proven track record in consulting, business development, and leadership roles across various industries."
+    }
+  };
+  
+  return mockData.profilebanner;
 }

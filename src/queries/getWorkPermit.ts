@@ -14,6 +14,15 @@ const GET_WORK_PERMIT = `
 `;
 
 export async function getWorkPermit(): Promise<WorkPermit> {
-  const data = await datoCMSClient.request<{ workPermit: WorkPermit }>(GET_WORK_PERMIT);
-  return data.workPermit;
+  // Mock data for Shreyansh Mathur
+  const mockData = {
+    workPermit: {
+      visaStatus: "Student Visa",
+      expiryDate: "2025-12-31",
+      summary: "Currently on student visa with work authorization",
+      additionalInfo: "Eligible for full-time employment upon graduation. Open to opportunities in business analysis, consulting, and strategic planning roles."
+    }
+  };
+  
+  return mockData.workPermit;
 }
